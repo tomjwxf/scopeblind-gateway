@@ -17,10 +17,14 @@ export interface Env {
 }
 
 interface VerifyResult {
-  verified: boolean;
+  ok?: boolean;
+  verified?: boolean;
   remaining?: number;
   error?: string;
   receipt?: any;
+  quota_exceeded?: boolean;
+  mode?: string;
+  upgrade_url?: string;
 }
 
 // Shadow mode telemetry — logged to console (visible in wrangler tail / Workers Logs)
@@ -133,8 +137,25 @@ export default {
 
       verifyResult = (await verifyRes.json()) as VerifyResult;
 
-      if (!verifyRes.ok || !verifyResult.verified) {
-        // Verification failed (quota exceeded, invalid proof, etc.)
+      // Free tier quota exceeded — verifier says to switch to shadow mode
+      // Forward the request anyway (don't break the API), but log it
+      if (verifyResult.quota_exceeded) {
+        logShadow("quota_exceeded", {
+          method: request.method,
+          path: url.pathname,
+          upgrade_url: verifyResult.upgrade_url || "",
+        });
+
+        return forwardToOrigin(request, env, url, {
+          "X-ScopeBlind-Mode": "shadow",
+          "X-ScopeBlind-Verified": "quota-exceeded",
+          "X-ScopeBlind-Action": "would-block",
+          "X-ScopeBlind-Quota": "exceeded",
+        });
+      }
+
+      if (!verifyRes.ok || (!verifyResult.ok && !verifyResult.verified)) {
+        // Verification failed (invalid proof, rate limited, etc.)
         logShadow("verify_failed", {
           method: request.method,
           path: url.pathname,
