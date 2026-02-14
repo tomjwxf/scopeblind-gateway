@@ -10,8 +10,7 @@
 
 export interface Env {
   ORIGIN_URL: string;
-  SCOPEBLIND_VERIFIER_URL: string;
-  SCOPEBLIND_API_KEY: string;
+  SCOPEBLIND_VERIFIER_URL: string; // e.g. https://api.scopeblind.com/v/abc123/verify — includes tenant ID, no API key needed
   SHADOW_MODE: string;       // "true" | "false"
   PROTECTED_METHODS: string; // comma-separated: "POST,PUT,DELETE,PATCH"
   FALLBACK_MODE: string;     // "open" | "closed"
@@ -127,7 +126,6 @@ export default {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-API-Key": env.SCOPEBLIND_API_KEY,
           Origin: request.headers.get("Origin") || url.origin,
         },
         body: proof, // Already JSON string from the header

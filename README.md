@@ -8,22 +8,20 @@ A Cloudflare Worker that sits in front of your API as a reverse proxy. Starts in
 
 ```bash
 # 1. Clone and install
-git clone https://github.com/scopeblind/gateway.git
-cd gateway
+git clone https://github.com/tomjwxf/scopeblind-gateway.git
+cd scopeblind-gateway
 npm install
 
-# 2. Set your backend URL
-#    Edit wrangler.toml → ORIGIN_URL = "https://your-api.com"
+# 2. Edit wrangler.toml:
+#    - ORIGIN_URL = "https://your-api.com"
+#    - SCOPEBLIND_VERIFIER_URL = "https://api.scopeblind.com/v/YOUR_SLUG/verify"
+#      (get your slug by scanning your endpoint at scopeblind.com)
 
-# 3. Set your ScopeBlind API key
-npx wrangler secret put SCOPEBLIND_API_KEY
-# Paste your key when prompted (starts with sb_live_ or sb_test_)
-
-# 4. Deploy
+# 3. Deploy
 npx wrangler deploy
 ```
 
-That's it. Your gateway is live at `scopeblind-gateway.<your-account>.workers.dev`.
+That's it. No API keys, no signup. Your gateway is live at `scopeblind-gateway.<your-account>.workers.dev`.
 
 Point your clients to the gateway URL instead of your origin. All traffic flows through, and you get shadow mode telemetry immediately.
 
@@ -80,15 +78,12 @@ All config lives in `wrangler.toml`:
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `ORIGIN_URL` | (required) | Your backend API URL |
-| `SCOPEBLIND_VERIFIER_URL` | `https://api.scopeblind.com/verify` | ScopeBlind verification endpoint |
+| `SCOPEBLIND_VERIFIER_URL` | (required) | Your tenant-specific verify URL (e.g. `https://api.scopeblind.com/v/abc123/verify`) |
 | `SHADOW_MODE` | `"true"` | `"true"` = measure only, `"false"` = enforce |
 | `PROTECTED_METHODS` | `"POST,PUT,DELETE,PATCH"` | Comma-separated HTTP methods to check |
 | `FALLBACK_MODE` | `"open"` | `"open"` = allow if verifier down, `"closed"` = block |
 
-Secrets (set via CLI):
-```bash
-npx wrangler secret put SCOPEBLIND_API_KEY
-```
+No secrets needed — your tenant slug in the verifier URL identifies you.
 
 ## Switching to Enforcement
 
