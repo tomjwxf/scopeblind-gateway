@@ -1,0 +1,29 @@
+name = "scopeblind-gateway"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+
+[vars]
+# Your backend API URL — requests will be forwarded here after verification
+ORIGIN_URL = "https://your-backend-api.com"
+
+# ScopeBlind Verifier endpoint
+SCOPEBLIND_VERIFIER_URL = "https://api.scopeblind.com/verify"
+
+# Shadow Mode (default: true)
+# "true"  = measure only — logs what WOULD be blocked, but lets everything through
+# "false" = enforce — actually blocks requests that fail verification
+SHADOW_MODE = "true"
+
+# Which HTTP methods require proof verification
+# Default: POST, PUT, DELETE, PATCH (state-changing methods)
+# GET requests pass through unverified by default
+PROTECTED_METHODS = "POST,PUT,DELETE,PATCH"
+
+# Fallback behavior when ScopeBlind verifier is unreachable
+# "open"   = allow all traffic (better for reliability)
+# "closed" = block all traffic (better for security)
+FALLBACK_MODE = "open"
+
+# Secrets (set via CLI, never commit):
+# npx wrangler secret put SCOPEBLIND_API_KEY
+# → Your API key from ScopeBlind (starts with sb_live_ or sb_test_)
