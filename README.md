@@ -1,5 +1,11 @@
 # ScopeBlind Gateway
 
+> **Source-available under the [Functional Source License (FSL-1.1-MIT)](https://fsl.software).**
+> You may use, modify, and self-host this freely for your own projects or internal company use.
+> You may not offer ScopeBlind (or a substantially similar service) as a hosted/managed product to third parties.
+> After 2 years, each version automatically converts to the MIT license.
+> For zero-ops managed hosting with real-time abuse intelligence, use [scopeblind.com](https://scopeblind.com).
+
 **Deploy in 2 minutes. See what bots are doing to your API.**
 
 A Cloudflare Worker that sits in front of your API as a reverse proxy. Starts in **shadow mode** — measures bot traffic without blocking anything. When you're ready, flip to enforcement.
@@ -123,4 +129,4 @@ Headers forwarded to your origin:
 
 ## License
 
-MIT
+[FSL-1.1-MIT](https://fsl.software) — Source-available. Converts to MIT after 2 years.
