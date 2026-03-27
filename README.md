@@ -118,7 +118,7 @@ ScopeBlind is part of a three-layer evidence infrastructure. Each layer is indep
 | Layer | What | License |
 |-------|------|---------|
 | **BlindLLM** | Coordination lab — blind AI battles, agent studio | [blindllm.com](https://blindllm.com) |
-| **ScopeBlind** | Commercial enforcement — policies, receipts, approval gates | FSL-1.1-MIT |
+| **ScopeBlind** | Commercial enforcement — policies, receipts, approval gates | MIT |
 | **Veritas Acta** | Open evidence protocol — format, verifier, constitution | MIT |
 
 [See the full stack &rarr;](https://scopeblind.com/stack)
@@ -134,18 +134,45 @@ ScopeBlind is part of a three-layer evidence infrastructure. Each layer is indep
 | `@veritasacta/verify` | [![npm](https://img.shields.io/npm/v/@veritasacta/verify)](https://www.npmjs.com/package/@veritasacta/verify) | MIT offline verifier |
 | `@scopeblind/verify-mcp` | [![npm](https://img.shields.io/npm/v/@scopeblind/verify-mcp)](https://www.npmjs.com/package/@scopeblind/verify-mcp) | MCP server for verification |
 
+## HTTP/SSE Transport
+
+Deploy protect-mcp as an HTTP server for remote MCP clients, Smithery, ChatGPT, and Glama:
+
+```bash
+npx protect-mcp --http --port 3000 -- node your-server.js
+```
+
+Endpoints: `POST /mcp` (Streamable HTTP), `GET /mcp/sse` (SSE), `GET /health`, `DELETE /mcp`.
+
+## Cedar Policy Engine
+
+Use AWS Cedar policies as an alternative to JSON:
+
+```bash
+npx protect-mcp --cedar ./policies/cedar/ --enforce -- node your-server.js
+```
+
+Local WASM evaluation — same engine as AWS Verified Permissions. All three policy engines (JSON, Cedar, external PDP) produce the same signed Acta receipts.
+
+## Install
+
+```bash
+# npm (Node.js)
+npx protect-mcp -- node your-server.js
+
+# pip (Python)
+pip install protect-mcp && protect-mcp -- node your-server.js
+```
+
 ## License
 
-> **Source-available under the [Functional Source License (FSL-1.1-MIT)](https://fsl.software).**
-> Free to use, modify, and self-host. You may not offer a competing hosted service.
-> After 2 years, each version converts to MIT.
-> Verification tools (`@veritasacta/verify`, `@veritasacta/protocol`) are MIT from day one.
+MIT — free to use, modify, and redistribute.
 
 ## Standards & IP
 
 - **IETF Internet-Draft**: [draft-farley-acta-signed-receipts-00](https://datatracker.ietf.org/doc/draft-farley-acta-signed-receipts/) — Signed Decision Receipts for Machine-to-Machine Access Control
 - **Patent Status**: Australian provisional patents pending (2025-2026)
-- **OWASP**: [Agentic Top 10 coverage mapping](https://scopeblind.com/docs/owasp)
+- **Compliance**: [SOC 2](https://scopeblind.com/docs/soc2) · [EU AI Act](https://scopeblind.com/docs/eu-ai-act) · [OWASP Agentic Top 10](https://scopeblind.com/docs/owasp)
 - **Verification**: MIT-licensed — `npx @veritasacta/verify --self-test`
 
 ---
