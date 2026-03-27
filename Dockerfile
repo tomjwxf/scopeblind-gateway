@@ -1,10 +1,10 @@
 FROM node:22-alpine
-
-WORKDIR /app
+LABEL org.opencontainers.image.title="protect-mcp"
+LABEL org.opencontainers.image.description="MCP security gateway with Ed25519-signed decision receipts"
+LABEL org.opencontainers.image.source="https://github.com/tomjwxf/scopeblind-gateway"
+LABEL org.opencontainers.image.licenses="MIT"
 
 RUN npm install -g protect-mcp@latest
 
-# protect-mcp is a stdio proxy that wraps other MCP servers.
-# In demo mode, it wraps a built-in sample server to demonstrate
-# shadow-mode logging, per-tool policies, and optional signed receipts.
 ENTRYPOINT ["protect-mcp"]
+CMD ["--help"]
