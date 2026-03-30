@@ -21,12 +21,12 @@
   <img alt="License" src="https://img.shields.io/badge/license-MIT-green.svg" />
   <img alt="npm protect-mcp" src="https://img.shields.io/npm/v/protect-mcp?label=protect-mcp&color=cb3837&logo=npm" />
   <img alt="Tests" src="https://img.shields.io/badge/tests-471%20passing-brightgreen" />
-  <a href="https://glama.ai/mcp/servers/tomjwxf/scopeblind-gateway"><img alt="Glama" src="https://glama.ai/mcp/servers/tomjwxf/scopeblind-gateway/badges/score.svg" /></a>
+  <a href="https://glama.ai/mcp/servers/scopeblind/scopeblind-gateway"><img alt="Glama" src="https://glama.ai/mcp/servers/scopeblind/scopeblind-gateway/badges/score.svg" /></a>
 </p>
 
 <p align="center">
   <a href="https://smithery.ai/servers/scopeblind/protect-mcp">Smithery</a> &middot;
-  <a href="https://glama.ai/mcp/servers/tomjwxf/scopeblind-gateway">Glama</a> &middot;
+  <a href="https://glama.ai/mcp/servers/scopeblind/scopeblind-gateway">Glama</a> &middot;
   <a href="https://clawhub.ai/skills/scopeblind-passport">ClawHub</a> &middot;
   <a href="https://datatracker.ietf.org/doc/draft-farley-acta-signed-receipts/">IETF Draft</a>
 </p>
@@ -193,9 +193,9 @@ See [@scopeblind/otel-exporter](https://npmjs.com/package/@scopeblind/otel-expor
 
 ## Example Integrations
 
-- [Karpathy's autoresearch](https://github.com/tomjwxf/ScopeBlindD2/tree/main/examples/autoresearch) — safety policy for ML experiment agents
-- [Meta HyperAgents](https://github.com/tomjwxf/ScopeBlindD2/tree/main/examples/hyperagents) — sandbox constraints for self-modifying agents
-- [Slack integration](https://github.com/tomjwxf/ScopeBlindD2/tree/main/examples/slack-integration) — 2-minute webhook setup
+- [Karpathy's autoresearch](https://github.com/scopeblind/ScopeBlindD2/tree/main/examples/autoresearch) — safety policy for ML experiment agents
+- [Meta HyperAgents](https://github.com/scopeblind/ScopeBlindD2/tree/main/examples/hyperagents) — sandbox constraints for self-modifying agents
+- [Slack integration](https://github.com/scopeblind/ScopeBlindD2/tree/main/examples/slack-integration) — 2-minute webhook setup
 
 ## Ecosystem
 
@@ -221,5 +221,5 @@ MIT — free to use, modify, and redistribute.
 ---
 
 <p align="center">
-  Built by <a href="https://github.com/tomjwxf">tomjwxf</a>
+  Built by <a href="https://scopeblind.com">ScopeBlind</a>
 </p>
