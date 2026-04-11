@@ -1,3 +1,7 @@
+> **⚠️ This repository has moved.** Active development continues at **[ScopeBlind/scopeblind-gateway](https://github.com/ScopeBlind/scopeblind-gateway)**.
+>
+> This personal fork may be behind the canonical repository. Please use the org repo for issues, pull requests, and the latest code.
+
 # protect-mcp
 
 Security gateway for MCP servers. Shadow-mode logs by default, per-tool policies, optional local Ed25519 receipts, and verification-friendly audit output.
